@@ -9,11 +9,12 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(ContactKey.class)
 @Table(name = "t_contact")
 public class Contact {
-    @Id
-    @Column(name="contact_type")
+    @EmbeddedId
+    private ContactKey id;
+
+    @Column(name="contact_type", insertable=false, updatable=false)
     @NotEmpty(message = "Type is required")
     private String type;
 
@@ -21,12 +22,7 @@ public class Contact {
     @NotEmpty(message = "Value is required")
     private String value;
 
-    @Id
-    @Column(name = "user_id")
-    private Long user_id;
-
-    @ManyToOne
-    @MapsId("user_id")
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 }

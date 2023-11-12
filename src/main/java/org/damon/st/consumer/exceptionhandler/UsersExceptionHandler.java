@@ -10,9 +10,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class UsersExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ErrorDto handleException(Exception e) {
-        return new ErrorDto(
-                        e.getMessage(),
-                        System.currentTimeMillis()
-                );
+        return new ErrorDto(99, e.getMessage());
     }
 }

@@ -5,17 +5,17 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: '@spring.datasource.url@'
-    username: '@spring.datasource.username@'
-    password: '@spring.datasource.password@'
+    url: 'spring.datasource.url'
+    username: 'spring.datasource.username'
+    password: 'spring.datasource.password'
 
   # Rabbit configuration
   rabbitmq:
-    host: '@spring.rabbitmq.host@'
-    port: '@spring.rabbitmq.port@'
-    username: '@spring.rabbitmq.username@'
-    password: '@spring.rabbitmq.password@'
-    virtual-host: '@spring.rabbitmq.virtual-host@'
+    host: 'spring.rabbitmq.host'
+    port: 'spring.rabbitmq.port'
+    username: 'spring.rabbitmq.username'
+    password: 'spring.rabbitmq.password'
+    virtual-host: 'spring.rabbitmq.virtual-host'
 
   # Hibernate configuration
   jpa:
@@ -25,9 +25,11 @@ spring:
         show_sql: true
 
   profiles:
-    active: "local"
+    active: 'local'
 
 app:
-  rabbitmq:
-    exchangeName: '@app.rabbitmq.exchangeName@'
-    queueName: '@app.rabbitmq.queueName@'
+  name: '${rootProject.name}'
+  version: '${project.version}'
+  rabbit:
+    exchange-name: 'app.rabbitmq.exchange-name'
+    queue-name: 'app.rabbitmq.queue-name'

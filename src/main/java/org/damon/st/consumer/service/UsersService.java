@@ -1,14 +1,12 @@
 package org.damon.st.consumer.service;
 
 import org.damon.st.consumer.model.User;
+import org.damon.st.consumer.utils.UserOperation;
 
 import java.util.List;
 
 public interface UsersService {
-    void createUser(User user);
-    void updateUser(User user);
-    void deleteUser(User user);
-
+    void processUserOperation(User user, UserOperation operation);
     List<User> findAll();
     List<User> searchByName(String name);
     List<User> searchBySurname(String surname);

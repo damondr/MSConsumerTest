@@ -1,11 +1,11 @@
 package org.damon.st.consumer.config;
 
+import lombok.RequiredArgsConstructor;
 import org.damon.st.consumer.dto.UserOperationDto;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.support.converter.DefaultJackson2JavaTypeMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,20 +13,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@RequiredArgsConstructor
 public class RabbitMQConfig {
 
-    @Value("${app.rabbitmq.exchangeName}")
-    private String exchangeName;
-    @Bean
-    public RabbitMQProperties userInfoRabbitMQProperties() {
-        return new RabbitMQProperties();
-    }
-
+    private final ApplicationProperties applicationProperties;
     @Bean
     public Exchange userInfoExchange() {
-        return new DirectExchange(exchangeName);
+        return new DirectExchange(applicationProperties.getRabbit().getExchangeName());
     }
-
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {
 

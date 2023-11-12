@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorDto {
+    private int code;
     private String message;
-    private long timestamp;
 }
