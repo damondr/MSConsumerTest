@@ -1,0 +1,35 @@
+server:
+  port: 10002
+
+# Datasource configuration
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: 'spring.datasource.url'
+    username: 'spring.datasource.username'
+    password: 'spring.datasource.password'
+
+  # Rabbit configuration
+  rabbitmq:
+    host: 'spring.rabbitmq.host'
+    port: 'spring.rabbitmq.port'
+    username: 'spring.rabbitmq.username'
+    password: 'spring.rabbitmq.password'
+    virtual-host: 'spring.rabbitmq.virtual-host'
+
+  # Hibernate configuration
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+
+  profiles:
+    active: 'local'
+
+app:
+  name: '${rootProject.name}'
+  version: '${project.version}'
+  rabbit:
+    exchange-name: 'app.rabbitmq.exchange-name'
+    queue-name: 'app.rabbitmq.queue-name'
